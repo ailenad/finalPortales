@@ -1,5 +1,5 @@
 # 📄 Release Notes
 
 ## 2023-12-14
-* - Instalación de Composer
-* - Configuración inicial de Git 
+* Instalación de Composer
+* Configuración inicial de Git 
