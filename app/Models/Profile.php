@@ -12,6 +12,7 @@ class Profile extends Model
         'first_name',
         'last_name',
         'user_id',
+        'avatar',
     ];
     public function user() 
     {

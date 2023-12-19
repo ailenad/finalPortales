@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\editor;
+namespace App\Http\Controllers\guest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-class UserController extends Controller
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view ('admin.register-admin');
+        return view ('guest.register');
     }
 
     /**
@@ -45,11 +45,10 @@ class UserController extends Controller
             'nombre' => $request->input('nombre'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            //defino el rol 
-            'role' => 'editor',
+            'role' => 'guest',
         ]);
         Auth::login($user);
-        return redirect()->route('profiles.create');
+        return redirect()->route('guest-profiles.create');
     }
 
     /**
@@ -57,7 +56,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-     
+        //
     }
 
     /**
@@ -82,27 +81,25 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
-    }   
-    public function showLogin()
-    {
-        return view ('admin.login');
     }
-    public function login(Request $request)
-    {
+    public function showAccess(){
+        return view ('guest.access-guest');
+    }
+    public function loginGuest (Request $request){
             $request->validate([
                 'email' => 'required|string|email',
                 'password' => 'required|string',
             ]);
             $user = User::where('email', $request->input('email'))
-            ->where('role', 'editor')
+            ->where('role', 'guest')
         ->first();
         if ($user) {
             if(Hash::check($request->input('password'), $user -> password)){
                 Auth::login($user);
-                return redirect()->route('articles.index');  
+                return redirect()->route('home-guest');  
                 }
         }else{
-            return view ('admin.register-admin');
+            return view ('guests.create');
         }
     }
 }
