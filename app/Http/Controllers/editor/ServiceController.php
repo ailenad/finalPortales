@@ -15,8 +15,9 @@ class ServiceController extends Controller
     {
       
         $services = Service::all();
+        
        
-        return view('admin.services', compact('services'));
+       return view('admin.services', compact('services'));
     }
 
     /**

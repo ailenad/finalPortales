@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                         <h3 class="mb-0">Mi Perfil</h3>
-                        <a href="{{ route('guest-profiles.edit', $profile->id) }}"class="m-2"><i class="bi bi-pencil"></i></a>
+                        <a href="{{ route('guest-profiles.edit', ['guest_profile' => $profile->id]) }}"class="m-2"><i class="bi bi-pencil "></i></a>
                         
                     </div>
                         
@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+     
  </div>
 
 @include('footer')

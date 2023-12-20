@@ -18,10 +18,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            // 'nombre' => fake()->name(),
+            // 'email' => fake()->unique()->safeEmail(),
+            // 'password' => '123456789', // password
+            // 'role'=> fake()->randomElement(['editor', 'guest'])
+            'nombre' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'password' => '123456789', // password
-            'role'=> 'editor'
+            'role'=> $this->faker->randomElement(['editor', 'guest'])
         ];
     }
 

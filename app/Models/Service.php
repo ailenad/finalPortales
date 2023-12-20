@@ -12,4 +12,8 @@ class Service extends Model
         'title',
         'description'
     ];
-}
+   public function users()
+    {
+        return $this->belongsToMany(User::class, 'contracted_services');
+    } 
+};

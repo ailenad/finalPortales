@@ -1,9 +1,7 @@
 <header id="header">
-    @include('header')
+    @include('navbar-admin')
 </header>
-<div class="d-flex justify-content-center">
-<a href="{{ route('articles.index')}}" class="btn btn-lg btn-primary mb-3">Gestionar Articulos</a>
-</div>  
+
 <section id="crear_articulos" class="crear_articulos">
  
   @include('admin.create_services')

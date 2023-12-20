@@ -9,8 +9,7 @@
   <div id="servicios">
     <div class="container px-4 py-5" id="featured-3">
         <h2 class="pb-2 border-bottom">Nuestros Servicios</h2>
-    </div>
-  <div class="row">
+     <div class="row">
       @foreach($services as $service)
         <div class="col-md-4">
             <div class="card mb-5">
@@ -22,6 +21,8 @@
         </div>
       @endforeach
     </div>
+      </div>
+ 
   </div>
 </main>
 <section>

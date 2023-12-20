@@ -42,9 +42,9 @@
          
 
 
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
+          <button class="w-100 btn btn-lg btn-primary btnHov" type="submit">Registrarse</button>
         </form>
-         <a href="{{ route('showLogin') }}" class="nav-link">Iniciar Sesion</a></button>
+         <a href="{{ route('showLogin') }}" class="nav-link btn btnHov">Iniciar Sesion</a>
       </div>
     </div>
   </div>

@@ -13,7 +13,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        
+        $guestUsers = User::where('role', 'guest')->with('contractedServices')->get();
+        return view('admin.client-list', ['guestUsers' => $guestUsers]);
     }
 
     /**
@@ -99,7 +100,7 @@ class GuestController extends Controller
                 return redirect()->route('home-guest');  
                 }
         }else{
-            return view ('guests.create');
+            return view ('guest.register');
         }
     }
 }

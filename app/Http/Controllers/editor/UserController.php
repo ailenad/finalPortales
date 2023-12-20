@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB as FacadesDB;
+
 class UserController extends Controller
 {
     /**
@@ -13,7 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usersPerDay = User::select(FacadesDB::raw('DATE(created_at) as date'), FacadesDB::raw('count(*) as count'))
+        ->groupBy('date')
+        ->get();
+
+        return view('admin.stadistics', ['usersPerDay' => $usersPerDay]);
     }
 
     /**

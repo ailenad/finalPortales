@@ -25,8 +25,9 @@
                 <label for="email">Ingrese su contraseña</label>
               </div>
 
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesion</button>
+              <button class="w-100 btn btn-lg btn-primary btnHov" type="submit">Iniciar Sesion</button>
             </form>
+            <a href="{{ route('guests.create') }}" class="btn  btnHov">No tienes cuenta? Registrarse</a>
         
           </div>
         </div>

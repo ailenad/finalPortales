@@ -31,6 +31,11 @@ class User extends Authenticatable
     {
         return $this-> hasOne(Profile::class);
     }
+    public function contractedServices()
+    {
+    return $this->belongsToMany(Service::class, 'contracted_services');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

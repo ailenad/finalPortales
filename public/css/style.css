@@ -1,0 +1,8 @@
+.btnHov:hover{
+    background-color: rgb(156, 156, 237);
+    color: black;
+}
+.btnService:hover{
+    background-color: blue;
+    color: black;
+}

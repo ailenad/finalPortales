@@ -7,8 +7,10 @@ use App\Http\Controllers\visitor\BlogController as BlogView;
 use App\Http\Controllers\editor\ServiceController as AdminService;
 use App\Http\Controllers\guest\GuestController as GuestUser;
 use App\Http\Controllers\guest\ProfileGuestController as GuestProfile;
-
 use App\Http\Controllers\visitor\ServiceController as ServiceView;
+use App\Http\Controllers\guest\ServiceGuestController as ServiceGuestView;
+use App\Http\Controllers\guest\ContractedServicesController as ContractedServices;
+use App\Models\ContractedService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +30,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profiles', AdminProfile::class);
     Route::resource('guest-profiles', GuestProfile::class);
     Route::get('home-guest', [GuestProfile::class ,'showProfileGuest'])->name('home-guest');
+    Route::get('services-avalible',[ServiceGuestView::class,'index'])->name('services-avalible');
+    
     // Route::get('home-guest', [ProfileGuestController::class ,'showProfileGuest'])->name('home-guest');
     Route::resource('articles', ArticlesAbm::class);
     Route::resource('services', AdminService::class);
+    Route::resource('contract_service',  ContractedServices::class);
+   
 });
 //metodo no resouceful
 //rutas login admin
@@ -43,6 +49,8 @@ Route::post('access-guest',[GuestUser::class, 'loginGuest'])->name('access-guest
 
 
 Route::get('/', [ServiceView::class, 'index'] )->name('home');
+
+
 Route::resource('blog', BlogView::class);
 // Route::resource('services', ServiceView::class);
 

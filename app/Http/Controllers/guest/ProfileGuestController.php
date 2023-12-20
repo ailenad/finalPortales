@@ -63,16 +63,19 @@ class ProfileGuestController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Profile $profile)
+    public function edit(Profile $guest_profile)
     {
-        return view ('guest.edit-profile', compact(('profile')));
+        return view('guest.edit-profile', compact('guest_profile'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, $id)
     {
+        $user = Auth::user();
+        $profile = Profile::findOrFail($id);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -81,11 +84,21 @@ class ProfileGuestController extends Controller
         //Actualizo los valores desde el form
         $profile -> first_name = $request->input('first_name');
         $profile -> last_name = $request->input('last_name');
-      
+        $profile->user_id = $user->id;
         //Imagen
         if ($request->hasFile('avatar')) {
+
             $path = 'img/' . time() . '.' . $request->avatar->getClientOriginalExtension();
             $request->avatar->move(public_path('img'), $path);
+            if ($profile->avatar) {
+                $existingAvatar = public_path($profile->avatar);
+                if (file_exists($existingAvatar)) {
+                    unlink($existingAvatar);
+                }
+            }
+    
+            // Actualizar la ruta de la imagen con la nueva ruta
+     
             $profile->avatar = $path;
         }
     

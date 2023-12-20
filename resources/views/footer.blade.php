@@ -1,5 +1,5 @@
-<section id="footer" class="footer">
- <footer id="footer">
+
+ <footer id="footer" class="mt-5">
     <div class="container">
       <h3>SniffNear - Ailen Alvarez</h3>
       <div class="social-links">
@@ -12,4 +12,3 @@
       </div>
     </div>
   </footer>
-</section>
