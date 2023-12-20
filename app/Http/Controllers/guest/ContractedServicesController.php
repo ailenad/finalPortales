@@ -13,10 +13,8 @@ class ContractedServicesController extends Controller
      */
     public function index()
     {
-        // Obtén el usuario actual
         $user = auth()->user();
 
-    // Obtén los servicios contratados por el usuario
          $services = $user->contractedServices;
          return view('guest.services-contracted', ['services' => $services]);
     }
@@ -36,16 +34,11 @@ class ContractedServicesController extends Controller
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',
-            // Otras reglas de validación si las hay
         ]);
-        // Obtén el usuario actual
         $user = $request->user();
 
-        // Agrega el servicio al usuario
         $user->contractedServices()->attach($request->service_id);
 
-
-        // Redirige al usuario a la página de inicio
         return redirect()->route('contract_service.index');
     }
 

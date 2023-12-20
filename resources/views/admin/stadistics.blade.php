@@ -1,6 +1,5 @@
-<header id="header">
-    @include('navbar-admin')
-</header>
+
+ @include('navbar-admin')
 
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -32,3 +31,4 @@
         </div>
     </div>
 </div>
+@include('footer')

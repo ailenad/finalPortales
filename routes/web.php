@@ -26,35 +26,34 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('users', AdminUser::class);
 Route::resource('guests', GuestUser::class);
+
 Route::middleware(['auth'])->group(function () {
     Route::resource('profiles', AdminProfile::class);
     Route::resource('guest-profiles', GuestProfile::class);
     Route::get('home-guest', [GuestProfile::class ,'showProfileGuest'])->name('home-guest');
     Route::get('services-avalible',[ServiceGuestView::class,'index'])->name('services-avalible');
-    
-    // Route::get('home-guest', [ProfileGuestController::class ,'showProfileGuest'])->name('home-guest');
     Route::resource('articles', ArticlesAbm::class);
     Route::resource('services', AdminService::class);
     Route::resource('contract_service',  ContractedServices::class);
    
 });
-//metodo no resouceful
-//rutas login admin
+
+//Rutas para admin login
 Route::get('showLogin', [AdminUser::class , 'showLogin'])->name('showLogin');
 Route::post('login', [AdminUser::class , 'login'])->name('login');;
-//rutas login guest
 
+//Rutas para guest login
 Route::get('showAccess', [GuestUser::class , 'showAccess'])->name('showAccess');
 Route::post('access-guest',[GuestUser::class, 'loginGuest'])->name('access-guest');
 
-
+//Ruta home
 Route::get('/', [ServiceView::class, 'index'] )->name('home');
 
-
+//Ruta blog
 Route::resource('blog', BlogView::class);
-// Route::resource('services', ServiceView::class);
 
-//Rolchoice
+
+//Rutas para rolchoice
 Route::get('/rol-choice', function () {
     return view('rol-choice');
 })->name('rol-choice');

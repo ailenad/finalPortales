@@ -11,7 +11,7 @@
     </div>
 </div>
 </section>
-<footer>
-   @include('footer') 
-</footer>
+
+@include('footer') 
+
 

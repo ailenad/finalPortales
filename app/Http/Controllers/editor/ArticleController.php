@@ -34,7 +34,10 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+
         $profileId = $user->profile->id;
+
+        //Validacion del form
          $mensajesError = [
         'title' => 'Debe ingresar un titulo para su articulo.',
         'content' => 'EL contenido del articulo no puede quedar vacio.',
@@ -47,11 +50,11 @@ class ArticleController extends Controller
             'category' => 'required|string', 
         ] ,$mensajesError);
    
-            $article = Article::create([
+        $article = Article::create([
                 'title' => $request->input('title'),
                 'content' => $request->input('content'),   
                 'profile_id' => $profileId
-            ]);
+         ]);
 
        
         $categoryName = $request->input('category');

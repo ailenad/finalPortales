@@ -1,6 +1,6 @@
-<header id="header">
-    @include('header')
-</header>
+
+@include('header')
+
 <section id="blog" class="blog">
   <div class="px-4 py-5 my-5 text-center">
       <img class="d-block mx-auto mb-4" src="{{ asset('/img/consejos.png')}}" >
@@ -27,8 +27,6 @@
       </div>
   </div>
 </section>
-<footer id="footer" class="footer">
 
-  @include('footer')
+@include('footer')
 
-</footer>

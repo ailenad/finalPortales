@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //Cantidad de usuarios que se crean por dia 
         $usersPerDay = User::select(FacadesDB::raw('DATE(created_at) as date'), FacadesDB::raw('count(*) as count'))
         ->groupBy('date')
         ->get();
@@ -35,6 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // Validacion del form
         $mensajesError = [
             'required' => 'El campo :attribute es obligatorio.',
             'email' => 'El campo :attribute debe ser una dirección de correo válida.',
@@ -51,9 +53,10 @@ class UserController extends Controller
             'nombre' => $request->input('nombre'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            //defino el rol 
             'role' => 'editor',
         ]);
+
+        //Inicio de sesion con el usuario que se creo
         Auth::login($user);
         return redirect()->route('profiles.create');
     }
@@ -89,12 +92,14 @@ class UserController extends Controller
     {
         //
     }   
+    //Metodo para mostrar el formulario de inicio de sesion de admin
     public function showLogin()
     {
         return view ('admin.login');
     }
     public function login(Request $request)
     {
+        //Valido el form
             $request->validate([
                 'email' => 'required|string|email',
                 'password' => 'required|string',
@@ -103,6 +108,7 @@ class UserController extends Controller
             ->where('role', 'editor')
         ->first();
         if ($user) {
+            //Contrasena
             if(Hash::check($request->input('password'), $user -> password)){
                 Auth::login($user);
                 return redirect()->route('articles.index');  

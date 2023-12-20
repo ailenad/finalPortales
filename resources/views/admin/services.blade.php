@@ -1,6 +1,5 @@
-<header id="header">
+
     @include('navbar-admin')
-</header>
 
 <section id="crear_articulos" class="crear_articulos">
  
@@ -26,3 +25,5 @@
         @endforeach
     </div>
 </div>
+
+@include('footer')

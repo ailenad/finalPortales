@@ -97,7 +97,6 @@ class ProfileGuestController extends Controller
                 }
             }
     
-            // Actualizar la ruta de la imagen con la nueva ruta
      
             $profile->avatar = $path;
         }
@@ -115,9 +114,9 @@ class ProfileGuestController extends Controller
         //
     }
     public function showProfileGuest() {
-        //usuario que inicio sesion
+
         $user = auth()->user();
-        //obtener el perfil de ese usuario
+
         $profile = $user->profile;
     
         return view('guest.home-guest', ['profile' => $profile]);
